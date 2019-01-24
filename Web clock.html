@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digital Clock</title>
+  <style>
+  .mystyle {
+    display: none;
+  }
+  .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+  }
+  @media screen and (max-width: 1024px){
+    #demo{
+      font-size: 160px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    #demo{
+      font-size: 120px
+    }
+  }
+  @media screen and (max-width: 425px){
+    #demo{
+      font-size: 70px;
+    }
+  }
+  </style>
+</head>
+<body>
+
+<!-- <button id="btn" onclick="fn()">Show clock</button> -->
+<button id="btn" onclick="setInterval(myFunction, 1000)">Show clock</button>
+
+<div class="container">
+  <p id="demo" style="font-family:digital-7;"></p>
+</div>
+
+<script>
+var hr, min, secs, clock;
+//x = document.getElementById("demo");
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+clock = document.getElementById("demo");
+function fn(){
+  setInterval(myFunction, 1000);
+    toggleClock();
+}
+function myFunction() {
+  clock = document.getElementById("demo");
+    var btn = document.getElementById("btn");
+  hr = pad(new Date().getHours());
+    min = pad(new Date().getMinutes());
+    secs = pad(new Date().getSeconds());
+  clock.innerHTML = hr + ":" + min + ":" + secs; 
+}
+function toggleClock() {
+  clock = document.getElementById("demo");
+    var btn = document.getElementById("btn");
+    if (clock.style.display === "none") {
+      clock.style.display = "block";
+      btn.innerHTML = "Hide clock";
+    } else {
+      clock.style.display = "none";
+      btn.innerHTML = "Show clock";
+    }
+}
+
+function toggleCloc(){
+  clock.classList.toggle("mystyle");
+}
+  
+</script>
+
+</body>
+</html>
